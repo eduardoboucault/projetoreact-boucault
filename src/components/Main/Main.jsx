@@ -4,10 +4,9 @@ import Product from "../Product/Product";
 
 export default function Main({ products, onAddItem, search, onChangeInput }) {
 
-    
-    console.log(search)
-    console.log(products)
-    
+    const produtosFiltrado = products.filter((x) => {
+        return (x.name.toUpperCase()).includes(search.toUpperCase())}
+    )
 
     return (
         <MainStyle>
@@ -25,14 +24,20 @@ export default function Main({ products, onAddItem, search, onChangeInput }) {
                 </select>
             </div>
             <ProductsStyle>
-                
-                {products.map((object) => {
+
+                {search.length === 0 ? products.map((object) => {
                     return ( //* EU SOU UMA AMEBA NÃO ESQUEÇA DO RETURN
                         <Product key={object.id} product={object} onAddItem={onAddItem}></Product>
                     )
-                })}
+                }) :
+                    produtosFiltrado.map((object) => {
+                        return ( //* EU SOU UMA AMEBA NÃO ESQUEÇA DO RETURN
+                            <Product key={object.id} product={object} onAddItem={onAddItem}></Product>
+                        )
+                    })
+                }
 
-                </ProductsStyle>
-            </MainStyle>
-        )
-    }
+            </ProductsStyle>
+        </MainStyle>
+    )
+}
