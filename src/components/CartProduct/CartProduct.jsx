@@ -1,5 +1,5 @@
-import React from "react";
-import { CartStyle } from "./styled";
+import React from 'react';
+import { CartStyle } from './styled';
 
 export default function CartProduct({ cartItem, onAddItem, removeItens }) {
 
@@ -36,7 +36,6 @@ export default function CartProduct({ cartItem, onAddItem, removeItens }) {
             <br />
             <div>
                 Total:
-
                 {result.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </div>
             

@@ -5,18 +5,14 @@ import { Container } from './components/Container'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
 import CartProduct from './components/CartProduct/CartProduct'
+import Filters from './components/Filters/Filters'
 import products from './data'
 
 function App() {
 
   const [cartItem, setCartItem] = useState([]) //* Estado para items que estarão dentro do carrinho.
-  const [search, setSearch] = useState("") //* Estado inicial para input de busca de produtos.
-  const [cresc, setCresc] = useState("") //* Estado inicial do filter crescente.
-  const [decres, setDecres] = useState("") //* Estado inicial do filter decrescente.
-
-  const onChangeInput = (event) => {
-    setSearch(event.target.value)
-  }
+  const [search, setSearch] = useState('') //* Estado inicial para input de busca de produtos.
+  const [minPrice, setMinPrice] = useState('')
 
   const onAddItem = (product) => {
 
@@ -45,31 +41,38 @@ function App() {
     }
   }
 
-  const crescFunction = () => {
-
-  }
-
-  const decresFunction = () => {
-
-  }
-
   //* Função de adicionar item ao carrinho com instruções extras
 
   return (
+
     <div>
+
       <GlobalStyled />
       <Header />
+
+      <Filters
+        minPrice={minPrice}
+        setMinPrice={setMinPrice}
+        search={search}
+        setSearch={setSearch}
+      />
+
       <Container>
+
         <Main
-          cresc={cresc}
-          decres={decres}
-          search={search}
-          onChangeInput={onChangeInput}
           products={products}
           onAddItem={onAddItem}
+          search={search}
         />
-        <CartProduct cartItem={cartItem} onAddItem={onAddItem} removeItens={removeItens} />
+
+        <CartProduct
+          cartItem={cartItem}
+          onAddItem={onAddItem}
+          removeItens={removeItens}
+        />
+
       </Container>
+
     </div>
   )
 

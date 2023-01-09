@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ImgStyle = styled.img`
 max-height: 8rem;
