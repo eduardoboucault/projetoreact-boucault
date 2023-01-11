@@ -1,14 +1,18 @@
 import React from 'react'
 import { ImgStyle, TitleStyle, DivStyle, ButtonStyle } from './styled'
 
-export default function Product({ products, onAddItem }) {
-    
+export default function Product({ item, onAddItem }) {
+
     return (
+
         <DivStyle>
-            <ImgStyle src={products.image} alt={products.name}></ImgStyle>
-            <TitleStyle>{products.name}</TitleStyle>
-            <div>${products.value}</div>
-            <ButtonStyle onClick={()=>onAddItem(products)}>Adicionar</ButtonStyle>
+
+            <ImgStyle src={item.image} alt={item.name}></ImgStyle>
+            <TitleStyle>{item.name}</TitleStyle>
+            <div>${item.value}</div>
+            <ButtonStyle onClick={() => onAddItem(item)}>Adicionar</ButtonStyle>
+
         </DivStyle>
+
     )
 }
