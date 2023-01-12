@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartStyle } from './styled';
+import { CartStyle, ButtonRemove, ButtonAdd, TotalStyle } from './styled';
 
 export default function CartProduct({ cartItem, onAddItem, removeItens }) {
 
@@ -21,14 +21,14 @@ export default function CartProduct({ cartItem, onAddItem, removeItens }) {
 
                             <div key={item.id}>
 
-                                <div>{item.name}</div>
+                                <p>{item.name}</p>
                                 <div>
-                                    <button onClick={() => onAddItem(item)}>
+                                    <ButtonAdd onClick={() => onAddItem(item)}>
                                         +
-                                    </button>
-                                    <button onClick={() => removeItens(item)}>
+                                    </ButtonAdd>
+                                    <ButtonRemove onClick={() => removeItens(item)}>
                                         -
-                                    </button>
+                                    </ButtonRemove>
                                 </div>
                                 <div>
                                     {item.qty} x {(item.value * item.qty).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
@@ -42,11 +42,11 @@ export default function CartProduct({ cartItem, onAddItem, removeItens }) {
             </div>
 
             <br />
-            
-            <div>
+
+            <TotalStyle>
                 Total:
                 {result.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-            </div>
+            </TotalStyle>
 
         </CartStyle>
 

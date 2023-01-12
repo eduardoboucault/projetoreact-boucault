@@ -9,7 +9,7 @@ export default function Product({ item, onAddItem }) {
 
             <ImgStyle src={item.image} alt={item.name}></ImgStyle>
             <TitleStyle>{item.name}</TitleStyle>
-            <div>${item.value}</div>
+            <div> R$ {item.value}</div>
             <ButtonStyle onClick={() => onAddItem(item)}>Adicionar</ButtonStyle>
 
         </DivStyle>
