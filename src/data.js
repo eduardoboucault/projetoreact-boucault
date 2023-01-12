@@ -37,5 +37,4 @@ const products =
         image: "https://img.ibxk.com.br/2020/10/09/09002021259484.jpg?ims=704x",
     }]
 
-
 export default products;

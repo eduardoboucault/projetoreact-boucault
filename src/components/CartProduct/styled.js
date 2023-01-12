@@ -43,3 +43,11 @@ background-color: #f04040;
 width: 1.5rem;
 cursor: pointer;
 `
+
+export const PricesItemsStyled = styled.div`
+font-size: 1rem;
+padding: 0.2rem;
+p{
+    text-align:right;
+}
+`
