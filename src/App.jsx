@@ -1,18 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import { GlobalStyled } from './components/GlobalStyled/GlobalStyled'
+import products from './data'
 import { Container } from './components/Container'
-import Header from './components/Header/Header'
-import Main from './components/Main/Main'
 import CartProduct from './components/CartProduct/CartProduct'
 import Filters from './components/Filters/Filters'
-import products from './data'
+import Header from './components/Header/Header'
+import Main from './components/Main/Main'
 
 function App() {
-
-  const [cartItem, setCartItem] = useState([]) //* Estado para items que estarão dentro do carrinho.
-  const [search, setSearch] = useState('') //* Estado inicial para input de busca de produtos.
-  const [minPrice, setMinPrice] = useState('')
 
   const onAddItem = (product) => {
 
@@ -36,25 +32,35 @@ function App() {
       setCartItem(cartItem.filter((x => { x.id !== product.id })))
     } else {
       setCartItem(cartItem.map((x) => (
-        x.id === product.id ? { ...foundedItem, qty: foundedItem.qty - 1 } : x //* Se no carrinho o produto já existe, diminua sua quantidade em -1
+        x.id === product.id ? { ...foundedItem, qty: foundedItem.qty - 1 } : x
       )))
     }
+
   }
 
-  //* Função de adicionar item ao carrinho com instruções extras
+  const [cartItem, setCartItem] = useState([])
+  const [search, setSearch] = useState('')
+  const [minPrice, setMinPrice] = useState(-Infinity)
+  const [maxPrice, setMaxPrice] = useState(Infinity)
+  const [sorting, setSorting] = useState("title")
 
   return (
 
     <div>
 
       <GlobalStyled />
+
       <Header />
 
       <Filters
-        minPrice={minPrice}
-        setMinPrice={setMinPrice}
         search={search}
         setSearch={setSearch}
+        minPrice={minPrice}
+        setMinPrice={setMinPrice}
+        maxPrice={maxPrice}
+        setMaxPrice={setMaxPrice}
+        sorting={sorting}
+        setSorting={setSorting}
       />
 
       <Container>
@@ -63,6 +69,8 @@ function App() {
           products={products}
           onAddItem={onAddItem}
           search={search}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
         />
 
         <CartProduct

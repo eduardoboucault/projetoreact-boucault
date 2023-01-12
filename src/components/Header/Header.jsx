@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeaderStyle } from './styled';
 
-export default function Header(props) {
+export default function Header() {
     return (
         <HeaderStyle>
             <div>
