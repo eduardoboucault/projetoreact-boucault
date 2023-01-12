@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeaderStyle } from './styled';
+import { HeaderStyle, ButtonCounterStyled } from './styled';
 
-export default function Header() {
+export default function Header({ counterItems }) {
     return (
         <HeaderStyle>
             <div>
@@ -10,7 +10,17 @@ export default function Header() {
                 </a>
             </div>
             <div>
-                <a href='#/cart'>Cart</a> <a href='#/signin'>Sign in</a>
+                <a href='#/cart'>
+
+                    Carrinho {""}
+                    {counterItems ? (
+                        <ButtonCounterStyled>{counterItems}</ButtonCounterStyled>
+                    ) : (
+                        ""
+                    )
+                    }
+
+                </a> <a href='#/signin'>Cadastrar</a>
             </div>
         </HeaderStyle>
     )

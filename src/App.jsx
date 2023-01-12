@@ -7,6 +7,7 @@ import CartProduct from './components/CartProduct/CartProduct'
 import Filters from './components/Filters/Filters'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
+import Footer from './components/Footer/Footer'
 
 function App() {
 
@@ -36,22 +37,22 @@ function App() {
     const foundedItem = cartItem.find((item) => item.id === product.id);
 
     if (foundedItem.qty === 1) {
-      setCartItem(cartItem.filter((x => x.id !== product.id )))
+      setCartItem(cartItem.filter((x => x.id !== product.id)))
     } else {
       setCartItem(cartItem.map((x) => (
         x.id === product.id ? { ...foundedItem, qty: foundedItem.qty - 1 } : x
       )))
     }
-    
+
   }
-  
+
   return (
 
     <div>
 
       <GlobalStyled />
 
-      <Header />
+      <Header counterItems={cartItem.length} />
 
       <Filters
         search={search}
@@ -85,6 +86,8 @@ function App() {
         />
 
       </Container>
+
+      <Footer />
 
     </div>
   )
