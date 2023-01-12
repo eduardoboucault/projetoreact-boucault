@@ -2,7 +2,7 @@ import React from 'react';
 import { MainStyle, ProductsStyle } from './styled';
 import Product from '../Product/Product';
 
-export default function Main({ products, onAddItem, search, minPrice, maxPrice, sorting }) {
+export default function Main({ products, onAddItem, search, minPrice, maxPrice, sorting, order }) {
 
     return (
 
@@ -25,8 +25,15 @@ export default function Main({ products, onAddItem, search, minPrice, maxPrice, 
                     .sort((currentItem, nextItem) => {
                         if (sorting === "title") {
                             return currentItem.name.localeCompare(nextItem.name)
-                        } else if (sorting === "price") {
+                        } else {
                             return currentItem.value - nextItem.value
+                        }
+                    })
+                    .sort(() => {
+                        if (order === "asc") {
+                            return 0
+                        } else {
+                            return -1
                         }
                     })
                     .map((item) => {
@@ -39,7 +46,7 @@ export default function Main({ products, onAddItem, search, minPrice, maxPrice, 
                             item={item}
 
                         />
-                        
+
                     })}
 
             </ProductsStyle>

@@ -10,6 +10,13 @@ import Main from './components/Main/Main'
 
 function App() {
 
+  const [cartItem, setCartItem] = useState([])
+  const [search, setSearch] = useState('')
+  const [minPrice, setMinPrice] = useState(-Infinity)
+  const [maxPrice, setMaxPrice] = useState(Infinity)
+  const [sorting, setSorting] = useState("title")
+  const [order, setOrder] = useState('asc')
+
   const onAddItem = (product) => {
 
     const foundedItem = cartItem.find((item) => item.id === product.id);
@@ -29,21 +36,15 @@ function App() {
     const foundedItem = cartItem.find((item) => item.id === product.id);
 
     if (foundedItem.qty === 1) {
-      setCartItem(cartItem.filter((x => { x.id !== product.id })))
+      setCartItem(cartItem.filter((x => x.id !== product.id )))
     } else {
       setCartItem(cartItem.map((x) => (
         x.id === product.id ? { ...foundedItem, qty: foundedItem.qty - 1 } : x
       )))
     }
-
+    
   }
-
-  const [cartItem, setCartItem] = useState([])
-  const [search, setSearch] = useState('')
-  const [minPrice, setMinPrice] = useState(-Infinity)
-  const [maxPrice, setMaxPrice] = useState(Infinity)
-  const [sorting, setSorting] = useState("title")
-
+  
   return (
 
     <div>
@@ -61,6 +62,8 @@ function App() {
         setMaxPrice={setMaxPrice}
         sorting={sorting}
         setSorting={setSorting}
+        order={order}
+        setOrder={setOrder}
       />
 
       <Container>
@@ -71,6 +74,8 @@ function App() {
           search={search}
           minPrice={minPrice}
           maxPrice={maxPrice}
+          sorting={sorting}
+          order={order}
         />
 
         <CartProduct
