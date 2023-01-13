@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { GlobalStyled } from './components/GlobalStyled/GlobalStyled'
 import products from './data'
 import { Container } from './components/Container'
@@ -17,11 +17,12 @@ function App() {
   const [maxPrice, setMaxPrice] = useState(Infinity)
   const [sorting, setSorting] = useState("title")
   const [order, setOrder] = useState('asc')
+  const [register, setRegister] = useState(false) //* Implementar
 
   const onAddItem = (product) => {
 
     const foundedItem = cartItem.find((item) => item.id === product.id);
-
+    
     if (foundedItem) {
       setCartItem(cartItem.map((x) => (
         x.id === product.id ? { ...foundedItem, qty: foundedItem.qty + 1 } : x
@@ -29,9 +30,10 @@ function App() {
     } else {
       setCartItem([...cartItem, { ...product, qty: 1 }]);
     }
-
+    localStorage.setItem('CARRINHO_CLIENTE', JSON.stringify(cartItem))
+    
   }
-
+  
   const removeItens = (product) => {
 
     const foundedItem = cartItem.find((item) => item.id === product.id);
@@ -43,16 +45,25 @@ function App() {
         x.id === product.id ? { ...foundedItem, qty: foundedItem.qty - 1 } : x
       )))
     }
-
+    localStorage.setItem('CARRINHO_CLIENTE', JSON.stringify(cartItem))
+   
   }
 
+  useEffect(()=>{
+    setCartItem(JSON.parse(localStorage.getItem('CARRINHO_CLIENTE')))
+    },[])
+  
   return (
 
     <div>
 
       <GlobalStyled />
 
-      <Header counterItems={cartItem.length} />
+      <Header 
+      counterItems={cartItem.length}
+      register={register}
+      setRegister={setRegister}
+      />
 
       <Filters
         search={search}

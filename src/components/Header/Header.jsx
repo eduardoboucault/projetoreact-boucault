@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeaderStyle, ButtonCounterStyled } from './styled';
 
-export default function Header({ counterItems }) {
+export default function Header({ counterItems, register, setRegister }) {
     return (
         <HeaderStyle>
             <div>
@@ -20,7 +20,7 @@ export default function Header({ counterItems }) {
                     )
                     }
 
-                </a> <a href='#/signin'>Cadastrar</a>
+                </a> <a href='#/register'>Cadastrar</a>
             </div>
         </HeaderStyle>
     )
