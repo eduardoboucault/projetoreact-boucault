@@ -9,7 +9,7 @@ export default function Main({ products, onAddItem, search, minPrice, maxPrice, 
         <MainStyle>
 
             <h2>Produtos</h2>
-
+            <p>Compras acima de R$50 reais tem desconto de R$5</p>
             <ProductsStyle>
 
                 {products
