@@ -11,7 +11,7 @@ import Footer from './components/Footer/Footer'
 
 function App() {
 
-  const [cartItem, setCartItem] = useState([])
+  const [cartItem, setCartItem] = useState(JSON.parse(localStorage.getItem('CARRINHO_CLIENTE')) || []) //* Ou o estado inicial começa com o ID CARRINHO_CLIENTE que foi alterado OU inicia vazio.
   const [search, setSearch] = useState('')
   const [minPrice, setMinPrice] = useState(-Infinity)
   const [maxPrice, setMaxPrice] = useState(Infinity)
@@ -19,6 +19,11 @@ function App() {
   const [order, setOrder] = useState('asc')
   const [register, setRegister] = useState(false) //* Implementar
 
+  useEffect(()=>{
+    localStorage.setItem('CARRINHO_CLIENTE', JSON.stringify(cartItem))
+    },[cartItem])
+  
+  
   const onAddItem = (product) => {
 
     const foundedItem = cartItem.find((item) => item.id === product.id);
@@ -30,7 +35,6 @@ function App() {
     } else {
       setCartItem([...cartItem, { ...product, qty: 1 }]);
     }
-    localStorage.setItem('CARRINHO_CLIENTE', JSON.stringify(cartItem))
     
   }
   
@@ -45,13 +49,8 @@ function App() {
         x.id === product.id ? { ...foundedItem, qty: foundedItem.qty - 1 } : x
       )))
     }
-    localStorage.setItem('CARRINHO_CLIENTE', JSON.stringify(cartItem))
-   
+    
   }
-
-  useEffect(()=>{
-    setCartItem(JSON.parse(localStorage.getItem('CARRINHO_CLIENTE')))
-    },[])
   
   return (
 
