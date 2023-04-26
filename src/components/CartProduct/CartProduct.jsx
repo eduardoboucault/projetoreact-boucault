@@ -40,7 +40,7 @@ export default function CartProduct({ cartItem, onAddItem, removeItens }) {
                     })}
                 {cartItem.length !== 0 && (
                     <>
-                        <hr/>
+                        <hr />
                         <PricesItemsStyled>
                             Preço dos itens
 

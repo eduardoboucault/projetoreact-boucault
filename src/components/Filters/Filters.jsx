@@ -44,4 +44,4 @@ export default function Filters({ search, setSearch, minPrice, setMinPrice, maxP
         </FilterStyle>
 
     )
-}
+};

@@ -30,7 +30,7 @@ export default function Footer() {
                         Atualização de estados para renderização de objetos com map() e filter()
                         <br />
                         Renderização condicional através de if ternário, if/else e curto circuito
-                       
+
                     </ContentRightStyled>
                     <SocialStyled>
                         <a href="https://www.facebook.com/eduardo.boucault">
